@@ -6,13 +6,14 @@
 /*----------------------------------------------------------------------------*/
 
 #include "subsystems/ExampleSubsystem.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 ExampleSubsystem::ExampleSubsystem() : frontLeftMotor(4), rearLeftMotor(5), frontRightMotor(0), rearRightMotor(1) {
   // Implementation of subsystem constructor goes here.
-  frontLeftMotor.SetInverted(true);
-  rearLeftMotor.SetInverted(true);
-  frontRightMotor.SetInverted(false);
-  rearRightMotor.SetInverted(false);
+    frontLeftMotor.SetInverted(true);
+    rearLeftMotor.SetInverted(true);
+    frontRightMotor.SetInverted(false);
+    rearRightMotor.SetInverted(false);
 }
 
 void ExampleSubsystem::Periodic() {
@@ -56,6 +57,11 @@ void ExampleSubsystem::powerDrive(double x, double y)
     rearLeftMotor.Set(ControlMode::PercentOutput, r);
     frontRightMotor.Set(ControlMode::PercentOutput, l);
     rearRightMotor.Set(ControlMode::PercentOutput, l);
+
+    frc::SmartDashboard::PutNumber("x drive", x);
+    frc::SmartDashboard::PutNumber("y drive", y);
+    frc::SmartDashboard::PutNumber("left drive", l);
+    frc::SmartDashboard::PutNumber("right drive", r);    
 }
 
 void ExampleSubsystem::autoDrive(double power)

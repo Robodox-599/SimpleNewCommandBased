@@ -7,7 +7,7 @@
 
 #include "commands/ExampleCommand.h"
 
-ExampleCommand::ExampleCommand(ExampleSubsystem* subsystem, std::function<double()> forward, std::function<double()> rotation)
+ExampleCommand::ExampleCommand(ExampleSubsystem* subsystem, std::function<double()> rotation, std::function<double()> forward)
     : m_subsystem{subsystem}, m_forward{forward}, m_rotation{rotation}
     {
         AddRequirements({subsystem});

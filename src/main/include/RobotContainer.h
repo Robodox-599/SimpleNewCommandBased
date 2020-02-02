@@ -13,6 +13,7 @@
 #include "commands/ExampleAutoCommand.h"
 #include "subsystems/ExampleSubsystem.h"
 #include "frc/XboxController.h"
+#include "frc/Joystick.h"
 
 /**
  * This class is where the bulk of the robot should be declared.  Since
@@ -33,6 +34,7 @@ class RobotContainer {
   ExampleAutoCommand m_autonomousCommand;
 
   frc::XboxController xbox{0};
+  // frc::Joystick m_joy{1};
 
   void ConfigureButtonBindings();
 };

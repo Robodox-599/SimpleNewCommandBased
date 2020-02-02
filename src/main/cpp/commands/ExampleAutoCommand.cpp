@@ -7,7 +7,7 @@
 
 #include "commands/ExampleAutoCommand.h"
 
-ExampleAutoCommand::ExampleAutoCommand(ExampleSubsystem* subsystem, std::function<double()> power) : m_subsystem{subsystem} {
+ExampleAutoCommand::ExampleAutoCommand(ExampleSubsystem* subsystem, std::function<double()> power) : m_subsystem{subsystem}, m_power{power} {
   // Use addRequirements() here to declare subsystem dependencies.
   AddRequirements({subsystem});
 }
@@ -15,11 +15,11 @@ ExampleAutoCommand::ExampleAutoCommand(ExampleSubsystem* subsystem, std::functio
 // Called when the command is initially scheduled.
 void ExampleAutoCommand::Initialize() 
 {
-  m_subsystem->autoDrive(0.5);
+  
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ExampleAutoCommand::Execute() {}
+void ExampleAutoCommand::Execute() {m_subsystem->autoDrive(m_power());}
 
 // Called once the command ends or is interrupted.
 void ExampleAutoCommand::End(bool interrupted) {m_subsystem->autoDrive(0);}

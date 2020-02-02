@@ -7,16 +7,24 @@
 
 #include "RobotContainer.h"
 #include "commands/ExampleCommand.h"
+#include "frc2/command/button/JoystickButton.h"
 
-RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem) {
+#include "commands/ExampleAutoCommand.h"
+#include "frc2/command/ParallelRaceGroup.h"
+
+RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem, [=] {return 0.5;}) {
   // Initialize all of your commands and subsystems here
-  m_subsystem.SetDefaultCommand(ExampleCommand(&m_subsystem, [this] {return xbox.GetRawAxis(4);}, [this] {return xbox.GetRawAxis(1);}));
+  m_subsystem.SetDefaultCommand(ExampleCommand(&m_subsystem, [this] {return xbox.GetRawAxis(1);},[this] {return xbox.GetRawAxis(4);}));
   // Configure the button bindings
   ConfigureButtonBindings();
 }
 
 void RobotContainer::ConfigureButtonBindings() {
   // Configure your button bindings here
+  frc2::JoystickButton xboxA{&xbox, 1};
+  frc2::JoystickButton xboxB{&xbox, 2};
+  xboxA.WhenPressed(ExampleAutoCommand(&m_subsystem, [=] {return 0.5;}).WithTimeout(1.0_s));
+  xboxB.WhenPressed(ExampleAutoCommand(&m_subsystem, [=] {return 0.5;}).WithTimeout(1.0_s));
 }
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {

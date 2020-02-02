@@ -27,7 +27,7 @@ class ExampleCommand
    *
    * @param subsystem The subsystem used by this command.
    */
-  explicit ExampleCommand(ExampleSubsystem* subsystem, std::function<double()> forward, std::function<double()> rotation);
+  explicit ExampleCommand(ExampleSubsystem* subsystem, std::function<double()> rotation, std::function<double()> forward);
 
   void Execute() override;
 
