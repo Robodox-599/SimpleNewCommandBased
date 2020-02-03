@@ -15,14 +15,26 @@ ExampleAutoCommand::ExampleAutoCommand(ExampleSubsystem* subsystem, std::functio
 // Called when the command is initially scheduled.
 void ExampleAutoCommand::Initialize() 
 {
-  
+  printf("command initialize");
 }
 
 // Called repeatedly when this Command is scheduled to run
-void ExampleAutoCommand::Execute() {m_subsystem->autoDrive(m_power());}
+void ExampleAutoCommand::Execute() 
+{
+  printf("command execute");
+  m_subsystem->autoDrive(m_power());
+}
 
 // Called once the command ends or is interrupted.
-void ExampleAutoCommand::End(bool interrupted) {m_subsystem->autoDrive(0);}
+void ExampleAutoCommand::End(bool interrupted) 
+{
+  printf("command end");
+  m_subsystem->autoDrive(0);
+}
 
 // Returns true when the command should end.
-bool ExampleAutoCommand::IsFinished() { return false; }
+bool ExampleAutoCommand::IsFinished() 
+{
+  printf("command is finished");
+  return false;
+}

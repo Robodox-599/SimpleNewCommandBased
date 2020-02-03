@@ -11,9 +11,11 @@
 
 #include "commands/ExampleAutoCommand.h"
 #include "frc2/command/ParallelRaceGroup.h"
+#include "frc/smartdashboard/SmartDashboard.h"
 
 RobotContainer::RobotContainer() : m_autonomousCommand(&m_subsystem, [=] {return 0.5;}) {
   // Initialize all of your commands and subsystems here
+  frc::SmartDashboard::PutData(&m_subsystem);
   m_subsystem.SetDefaultCommand(ExampleCommand(&m_subsystem, [this] {return xbox.GetRawAxis(1);},[this] {return xbox.GetRawAxis(4);}));
   // Configure the button bindings
   ConfigureButtonBindings();
